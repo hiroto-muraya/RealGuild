@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource/dotgothic16";
+
+/* shadcn の dark: 指定は使わない（配色は data-palette で管理する）。OS のダークモードで勝手に切り替わらないようにする */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'DotGothic16', ui-monospace, monospace;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * RealGuild テーマ: レトロ携帯ゲーム機風のドット絵 RPG（docs/design.md 2.4）
+ * 配色は <html data-palette="..."> で切り替える（ユーザーが選べる。既定は night）。
+ * 新しい色を使うときは 3 つのパレットすべてに変数を定義すること。
+ *   night: 勇者の夜（黒いウィンドウ × 白枠）
+ *   field: 草原（明るい携帯機風）
+ *   gb:    クラシック（4 階調グリーン）
+ */
+:root,
+:root[data-palette="night"] {
+    color-scheme: dark;
+    --background: #10183a;
+    --foreground: #f8f8f8;
+    --card: #080810;
+    --card-foreground: #f8f8f8;
+    --popover: #080810;
+    --popover-foreground: #f8f8f8;
+    --primary: #f8d030;
+    --primary-foreground: #101018;
+    --primary-shadow: #a87810;
+    --secondary: #283060;
+    --secondary-foreground: #f8f8f8;
+    --muted: #303048;
+    --muted-foreground: #b8b8d0;
+    --accent: #283060;
+    --accent-foreground: #f8f8f8;
+    --destructive: #f86858;
+    --border: #f8f8f8;
+    --window-inner: #6878a8;
+    --input: #f8f8f8;
+    --ring: #f8d030;
+    --xp-fill: #58d8f8;
+    --xp-empty: #283048;
+    --page-pattern: radial-gradient(#ffffff22 1px, transparent 1px);
+    --sprite-k: #101018; --sprite-h: #c05020; --sprite-s: #f8c890;
+    --sprite-a: #3870d0; --sprite-b: #805020; --sprite-m: #d0d8e8;
+}
+
+:root[data-palette="field"] {
+    color-scheme: light;
+    --background: #c8e8f0;
+    --foreground: #283040;
+    --card: #f8f8f0;
+    --card-foreground: #283040;
+    --popover: #f8f8f0;
+    --popover-foreground: #283040;
+    --primary: #e05838;
+    --primary-foreground: #f8f8f8;
+    --primary-shadow: #903020;
+    --secondary: #d8e8f8;
+    --secondary-foreground: #283040;
+    --muted: #e0e0d8;
+    --muted-foreground: #586070;
+    --accent: #d8e8f8;
+    --accent-foreground: #283040;
+    --destructive: #c83020;
+    --border: #384878;
+    --window-inner: #90b8e8;
+    --input: #384878;
+    --ring: #e05838;
+    --xp-fill: #3898f0;
+    --xp-empty: #d0d8e0;
+    --page-pattern: conic-gradient(#ffffff40 25%, transparent 0 50%, #ffffff40 0 75%, transparent 0);
+    --sprite-k: #283040; --sprite-h: #604030; --sprite-s: #f8d0a8;
+    --sprite-a: #e04838; --sprite-b: #886030; --sprite-m: #b8c8d8;
+}
+
+:root[data-palette="gb"] {
+    color-scheme: light;
+    --background: #9bbc0f;
+    --foreground: #0f380f;
+    --card: #8bac0f;
+    --card-foreground: #0f380f;
+    --popover: #8bac0f;
+    --popover-foreground: #0f380f;
+    --primary: #306230;
+    --primary-foreground: #9bbc0f;
+    --primary-shadow: #0f380f;
+    --secondary: #8bac0f;
+    --secondary-foreground: #0f380f;
+    --muted: #9bbc0f;
+    --muted-foreground: #306230;
+    --accent: #9bbc0f;
+    --accent-foreground: #0f380f;
+    --destructive: #0f380f;
+    --border: #0f380f;
+    --window-inner: #306230;
+    --input: #0f380f;
+    --ring: #306230;
+    --xp-fill: #306230;
+    --xp-empty: #9bbc0f;
+    --page-pattern: radial-gradient(#8bac0f 1px, transparent 1px);
+    --sprite-k: #0f380f; --sprite-h: #306230; --sprite-s: #8bac0f;
+    --sprite-a: #306230; --sprite-b: #0f380f; --sprite-m: #9bbc0f;
+}
+
+:root {
+    --radius: 0;
+    --sidebar: var(--card);
+    --sidebar-foreground: var(--card-foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--secondary);
+    --sidebar-accent-foreground: var(--card-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+    --chart-1: var(--primary);
+    --chart-2: var(--xp-fill);
+    --chart-3: var(--sprite-a);
+    --chart-4: var(--sprite-h);
+    --chart-5: var(--muted-foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    /* ドット絵フォントが擬似的な太字でにじまないようにする */
+    font-synthesis: none;
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: none;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: var(--page-pattern);
+    background-size: 16px 16px;
+  }
+}
+
+@layer components {
+  /* ドット絵 RPG 風のウィンドウ（二重線の枠 + 角を 1 ドット欠けさせる） */
+  .pixel-window {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border: 4px solid var(--border);
+    box-shadow: inset 0 0 0 2px var(--card), inset 0 0 0 4px var(--window-inner);
+    clip-path: polygon(
+      0 4px, 4px 4px, 4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
+  }
+
+  /* 選択中の項目の左に ▶ カーソルを出す */
+  .pixel-cursor {
+    position: relative;
+  }
+  .pixel-cursor::before {
+    content: "▶";
+    position: absolute;
+    left: -1.1em;
+    opacity: 0;
+  }
+  .pixel-cursor[aria-current="page"]::before,
+  .pixel-cursor:hover::before,
+  .pixel-cursor:focus-visible::before {
+    opacity: 1;
+  }
+  .pixel-cursor[aria-current="page"]::before {
+    animation: pixel-blink 0.8s steps(1) infinite;
+  }
+
+  .pixel-title {
+    text-shadow: 2px 2px 0 var(--primary-shadow);
+  }
+
+  .pixel-art {
+    image-rendering: pixelated;
+    shape-rendering: crispEdges;
+  }
+}
+
+@keyframes pixel-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-cursor[aria-current="page"]::before { animation: none; }
+}
