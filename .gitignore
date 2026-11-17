@@ -1,0 +1,16 @@
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# .NET
+bin/
+obj/
+*.user
+TestResults/
+
+# Secrets
+.env
+.env.*.local
+*.local
